@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti ❤️</title>
+    <!-- Tailwind CSS para un diseño limpio, moderno y móvil-first -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-image: linear-gradient(135deg, #fdf2f2 0%, #ffe4e6 100%);
+        }
+        .reveal-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal-content.active {
+            max-height: 2000px; /* Suficiente espacio para la imagen en móviles */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 text-center">
+
+    <div id="main-card" class="w-full max-w-md bg-white/95 p-6 md:p-8 rounded-3xl shadow-2xl border border-pink-100 transform transition-all duration-300">
+        <!-- Icono animado -->
+        <div id="initial-icon" class="text-6xl mb-6 animate-bounce">
+            🍕❤️
+        </div>
+
+        <!-- Mensaje Principal -->
+        <h1 class="text-3xl font-bold text-gray-850 mb-4">
+            ¿Ya no estemos peleados?
+        </h1>
+        
+        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+            Te amo muchísimo. Te invito a comer pizza, ¿andas? Di que sí.
+        </p>
+
+        <!-- Botón de Acción -->
+        <button id="main-button" onclick="aceptar()" class="w-full bg-red-400 hover:bg-red-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-250 transform active:scale-95 text-lg">
+            ¡Sii, vamos! 🍕
+        </button>
+        
+        <!-- Sección que se revela al dar click -->
+        <div id="reveal-area" class="reveal-content mt-6 space-y-6">
+            
+            <div class="border-t border-pink-100 pt-6">
+                <!-- Tu foto de imgbb -->
+                <div class="rounded-2xl overflow-hidden shadow-md border border-pink-50 bg-pink-50/50">
+                    <img src="https://i.ibb.co/qMmXJ5mD/42a275c4-6212-408b-8fcd-243e8fe7d931.jpg" alt="Nosotros" class="w-full h-auto object-cover max-h-[500px]">
+                </div>
+                
+                <!-- Mensaje de Amor -->
+                <p id="final-message" class="text-3xl font-extrabold mt-6 text-red-500 animate-pulse leading-snug">
+                    ¡Que te amo demasiado!
+                </p>
+                
+                <!-- Confirmación divertida -->
+                <p class="text-lg font-semibold text-emerald-600 mt-3">
+                    ¡Sabía que dirías que sí! Prepárate, yo invito. 🏃‍♂️💨
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function aceptar() {
+            // Oculta el botón principal para dar espacio a la sorpresa
+            document.getElementById('main-button').style.display = 'none';
+            
+            // Cambia el emoji animado
+            const icon = document.getElementById('initial-icon');
+            icon.classList.remove('animate-bounce');
+            icon.innerText = '🎉';
+
+            // Revela la foto y el mensaje final con transición suave
+            const revealArea = document.getElementById('reveal-area');
+            revealArea.classList.add('active');
+
+            // Hace scroll automático hacia abajo para que se vea toda la foto en móviles
+            setTimeout(() => {
+                revealArea.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, 300);
+        }
+    </script>
+</body>
+</html>
